@@ -397,3 +397,50 @@
     gap: 10px;
   }
 }
+
+/* ===== ADV CARD IMAGE ===== */
+.adv-icon {
+  width: 100%;
+  height: 160px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.adv-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.adv-card:hover .adv-icon img {
+  transform: scale(1.04);
+}
+
+/* ===== FEATURE SVG ICONS ===== */
+.feature-icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 12px;
+  color: #F5A020;
+  opacity: 0.85;
+}
+
+.feature-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.feature-item:hover .feature-icon {
+  opacity: 1;
+  color: #FFD889;
+}
+
+/* Remove old emoji span style */
+.feature-item-icon {
+  display: none;
+}
