@@ -186,62 +186,90 @@
 .mock-app {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
+/* Full bleed image card */
 .mock-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  background: rgba(255, 255, 255, 0.04);
+  position: relative;
+  height: 100px;
+  border-radius: 14px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.04);
+  background-size: cover;
+  background-position: center;
   border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 12px;
-  padding: 14px 16px;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+  cursor: default;
 }
 
-.mock-thumb {
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(245,160,32,0.3), rgba(232,118,42,0.15));
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
+.mock-row:hover {
+  transform: translateY(-2px);
+  border-color: rgba(245, 160, 32, 0.25);
 }
 
+/* Image source per card */
+.mock-row:nth-child(1) { background-image: url('../images/card5.jpg'); }
+.mock-row:nth-child(2) { background-image: url('../images/card6.jpg'); }
+.mock-row:nth-child(3) { background-image: url('../images/card7.jpg'); }
+.mock-row:nth-child(4) { background-image: url('../images/card8.jpg'); }
+
+/* Dark gradient overlay */
+.mock-row::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.75) 0%,
+    rgba(0, 0, 0, 0.4) 50%,
+    rgba(0, 0, 0, 0.55) 100%
+  );
+  z-index: 1;
+}
+
+/* Text sits on top of overlay */
 .mock-info {
-  flex: 1;
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  z-index: 2;
 }
 
 .mock-title {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 700;
   color: white;
   margin-bottom: 3px;
+  letter-spacing: -0.2px;
 }
 
 .mock-meta {
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.5);
 }
 
+/* Badge top-right */
 .mock-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
   font-size: 0.65rem;
   font-weight: 700;
-  padding: 3px 9px;
+  padding: 4px 10px;
   border-radius: 50px;
-  background: rgba(245, 160, 32, 0.15);
+  background: rgba(245, 160, 32, 0.18);
   color: #F5A020;
-  border: 1px solid rgba(245, 160, 32, 0.25);
+  border: 1px solid rgba(245, 160, 32, 0.3);
   white-space: nowrap;
+  backdrop-filter: blur(6px);
 }
 
 .mock-badge.new {
-  background: rgba(80, 200, 120, 0.12);
+  background: rgba(80, 200, 120, 0.15);
   color: #50c878;
-  border-color: rgba(80, 200, 120, 0.25);
+  border-color: rgba(80, 200, 120, 0.3);
 }
 
 /* ===== FEATURES SECTION ===== */
@@ -443,4 +471,5 @@
 /* Remove old emoji span style */
 .feature-item-icon {
   display: none;
-}
+                                                       }
+  
