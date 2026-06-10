@@ -1,6 +1,11 @@
+// ===== SUPABASE CONFIG =====
+const SUPABASE_URL = 'https://lfwoptswzsqdbahdurky.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxmd29wdHN3enNxZGJhaGR1cnt5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTkwNzgsImV4cCI6MjA5NjY3NTA3OH0.ZIe0LKiqk_gwxhfYwR3QtPCjbAgOQjC4NnJEwEoimEo';
+
 // ===== WAITLIST FORM =====
-function submitWaitlist() {
+async function submitWaitlist() {
   const input = document.getElementById('emailInput');
+  const btn = document.getElementById('joinBtn');
   const email = input.value.trim();
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -11,11 +16,57 @@ function submitWaitlist() {
     return;
   }
 
-  // TODO: hook up your API here
-  // fetch('/api/waitlist', { method: 'POST', body: JSON.stringify({ email }) });
+  // Loading state
+  btn.textContent = 'Joining...';
+  btn.disabled = true;
+  input.disabled = true;
 
-  document.getElementById('formState').classList.add('hidden');
-  document.getElementById('successState').classList.add('show');
+  try {
+    const response = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({ email })
+    });
+
+    if (response.status === 409) {
+      // Duplicate email
+      input.disabled = false;
+      btn.textContent = 'Join Waitlist';
+      btn.disabled = false;
+      input.classList.add('error');
+      input.placeholder = 'Already signed up!';
+      input.value = '';
+      setTimeout(() => {
+        input.classList.remove('error');
+        input.placeholder = 'Enter email';
+      }, 2500);
+      return;
+    }
+
+    if (!response.ok) throw new Error('Request failed');
+
+    // Success
+    document.getElementById('formState').classList.add('hidden');
+    document.getElementById('successState').classList.add('show');
+
+  } catch (err) {
+    input.disabled = false;
+    btn.textContent = 'Join Waitlist';
+    btn.disabled = false;
+    btn.style.background = '#ff5a3c';
+    btn.style.color = 'white';
+    btn.textContent = 'Try again';
+    setTimeout(() => {
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.textContent = 'Join Waitlist';
+    }, 2500);
+  }
 }
 
 // Event listeners
