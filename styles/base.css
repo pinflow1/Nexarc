@@ -9,10 +9,7 @@ body {
   background: #080808;
   font-family: 'Figtree', -apple-system, sans-serif;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 1rem;
+  display: block;
   position: relative;
 }
 
@@ -42,16 +39,6 @@ body::after {
   opacity: 0.03;
   pointer-events: none;
   z-index: 100;
-}
-
-/* ===== MAIN CONTENT WRAPPER ===== */
-.content {
-  max-width: 500px;
-  width: 100%;
-  text-align: center;
-  position: relative;
-  z-index: 10;
-  animation: fadeUp 0.8s ease-out;
 }
 
 /* ===== UTILITY ===== */
