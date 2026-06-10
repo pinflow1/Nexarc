@@ -1,6 +1,6 @@
 // ===== SUPABASE CONFIG =====
 const SUPABASE_URL = 'https://lfwoptswzsqdbahdurky.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxmd29wdHN3enNxZGJhaGR1cnt5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTkwNzgsImV4cCI6MjA5NjY3NTA3OH0.ZIe0LKiqk_gwxhfYwR3QtPCjbAgOQjC4NnJEwEoimEo';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imxmd29wdHN3enNxZGJhaGR1cmt5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODEwOTkwNzgsImV4cCI6MjA5NjY3NTA3OH0.ZIe0LKiqk_gwxhfYwR3QtPCjbAgOQjC4NnJEwEoimEo';
 
 // ===== WAITLIST FORM =====
 async function submitWaitlist() {
