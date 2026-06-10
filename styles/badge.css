@@ -1,3 +1,61 @@
+/* ===== HERO SECTION ===== */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 6%;
+  gap: 48px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Left column — badge, headline, card, socials */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  animation: fadeUp 0.8s ease-out;
+  padding: 80px 0;
+}
+
+/* Right column — image slot */
+.hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeUp 0.8s ease-out 0.15s both;
+}
+
+.hero-image-slot {
+  width: 100%;
+  aspect-ratio: 3/4;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-image-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 24px;
+}
+
+.hero-image-slot .placeholder-text {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
 /* ===== BADGE ===== */
 .badge {
   display: inline-flex;
@@ -25,14 +83,15 @@
 
 /* ===== HEADLINE ===== */
 .headline {
-  font-size: clamp(2.6rem, 7vw, 4rem);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
   font-weight: 700;
   letter-spacing: -2px;
   color: #F5A020;
   animation: bob 2.2s ease-in-out infinite, warmShift 3s ease-in-out infinite alternate;
   display: inline-block;
-  margin-bottom: 16px;
+  margin-bottom: 24px;
   position: relative;
+  line-height: 1.1;
 }
 
 .headline::after {
@@ -46,4 +105,28 @@
   transform: scaleX(0);
   transform-origin: left;
   animation: drawLine 1.8s ease-in-out infinite alternate;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 860px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 80px 6% 60px;
+    gap: 40px;
+  }
+
+  .hero-left {
+    padding: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-right {
+    display: none; /* hide image slot on mobile until image is added */
+  }
+
+  .headline {
+    text-align: center;
+  }
 }
