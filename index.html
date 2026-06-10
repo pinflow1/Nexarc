@@ -4,34 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>NextArc — Never miss a return</title>
-
-  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Styles (edit each file independently) -->
   <link rel="stylesheet" href="styles/base.css">
   <link rel="stylesheet" href="styles/animations.css">
   <link rel="stylesheet" href="styles/badge.css">
   <link rel="stylesheet" href="styles/card.css">
   <link rel="stylesheet" href="styles/socials.css">
+  <link rel="stylesheet" href="styles/sections.css">
 </head>
 <body>
 
   <div class="grain"></div>
   <div class="watermark">NextArc</div>
 
+  <!-- ===== HERO ===== -->
   <div class="content">
-
-    <!-- Badge -->
     <div class="badge">
       <span class="badge-dot"></span>
       First 1000 spots
     </div>
 
-    <!-- Headline -->
     <h1 class="headline">Never miss a return.</h1>
 
-    <!-- Card -->
     <div class="card">
       <div id="formState">
         <div class="card-title">Join the early waitlist</div>
@@ -41,8 +35,6 @@
           <button class="btn" id="joinBtn">Join Waitlist</button>
         </div>
       </div>
-
-      <!-- Success -->
       <div id="successState" class="success-state">
         <div class="success-icon">✦</div>
         <div class="success-title">You're on the list.</div>
@@ -50,20 +42,169 @@
       </div>
     </div>
 
-    <!-- Socials -->
     <div class="socials">
-      <a href="#" aria-label="X">
-        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622z"/></svg>
-      </a>
-      <a href="#" aria-label="Facebook">
-        <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-      </a>
-      <a href="#" aria-label="Instagram">
-        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8z"/></svg>
-      </a>
+      <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622z"/></svg></a>
+      <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8z"/></svg></a>
+    </div>
+  </div>
+
+  <!-- ===== ADVANTAGES ===== -->
+  <section class="section advantages">
+    <div class="section-label">Why NextArc</div>
+    <div class="section-title">Everything your anime watchlist is missing</div>
+    <div class="section-sub">Most fans lose track of shows mid-season or miss comeback announcements entirely. NextArc fixes all of that in one place.</div>
+
+    <div class="advantages-grid">
+      <div class="adv-card">
+        <div class="adv-icon">📋</div>
+        <h3>Track Everything</h3>
+        <p>Add any anime to your personal watchlist in seconds. Watching, paused, completed — it's all organised.</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">🔔</div>
+        <h3>Instant Season Alerts</h3>
+        <p>The moment a new season is announced, you get notified. No more finding out six months late.</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">💎</div>
+        <h3>Hidden Gems</h3>
+        <p>Highly rated but under-the-radar anime, surfaced just for you. Stop sleeping on the ones that matter.</p>
+      </div>
+      <div class="adv-card">
+        <div class="adv-icon">🎯</div>
+        <h3>Taste Matching</h3>
+        <p>Recommendations built around what you've actually watched — not just what's trending this week.</p>
+      </div>
     </div>
 
-  </div>
+    <a href="#" class="advantages-cta">Learn more →</a>
+  </section>
+
+  <!-- ===== VALUE PROPOSITION ===== -->
+  <section class="section value-prop">
+    <div class="value-prop-inner">
+
+      <div class="value-prop-text">
+        <div class="section-label">How It Works</div>
+        <div class="section-title">Your anime, always up to date</div>
+        <div class="section-sub">NextArc sits quietly in the background — tracking what you watch, monitoring announcements, and learning your taste over time. When something happens, you're the first to know.</div>
+
+        <div class="value-items">
+          <div class="value-item">
+            <h4>Smart Tracking</h4>
+            <p>Add shows once. NextArc handles the rest automatically.</p>
+          </div>
+          <div class="value-item">
+            <h4>Real-Time Alerts</h4>
+            <p>Season announcements delivered before the internet explodes.</p>
+          </div>
+          <div class="value-item">
+            <h4>Curated Picks</h4>
+            <p>Weekly hidden gem drops tailored to your specific taste.</p>
+          </div>
+          <div class="value-item">
+            <h4>Clean Interface</h4>
+            <p>No noise, no clutter — just the anime information you need.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="value-visual">
+        <div class="value-visual-card">
+          <div class="mock-app">
+            <div class="mock-row">
+              <div class="mock-thumb">⚔️</div>
+              <div class="mock-info">
+                <div class="mock-title">Demon Slayer</div>
+                <div class="mock-meta">Season 4 · Watching</div>
+              </div>
+              <span class="mock-badge">Up to date</span>
+            </div>
+            <div class="mock-row">
+              <div class="mock-thumb">🌊</div>
+              <div class="mock-info">
+                <div class="mock-title">Vinland Saga</div>
+                <div class="mock-meta">Season 3 · Announced</div>
+              </div>
+              <span class="mock-badge new">New season!</span>
+            </div>
+            <div class="mock-row">
+              <div class="mock-thumb">🔥</div>
+              <div class="mock-info">
+                <div class="mock-title">Dungeon Meshi</div>
+                <div class="mock-meta">Hidden Gem · 9.1★</div>
+              </div>
+              <span class="mock-badge">Recommended</span>
+            </div>
+            <div class="mock-row">
+              <div class="mock-thumb">🌙</div>
+              <div class="mock-info">
+                <div class="mock-title">Frieren</div>
+                <div class="mock-meta">Season 2 · Watching</div>
+              </div>
+              <span class="mock-badge new">Alert set</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== FEATURES ===== -->
+  <section class="section features">
+    <div class="features-inner">
+
+      <div class="features-visual">
+        <div class="features-visual-box">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="features-content">
+        <div class="section-label">Features</div>
+        <div class="section-title">Built for fans who take anime seriously</div>
+        <div class="section-sub">Everything you need to stay on top of your watchlist — nothing you don't.</div>
+
+        <div class="features-grid">
+          <div class="feature-item">
+            <span class="feature-item-icon">📡</span>
+            <h4>Live Announcements</h4>
+            <p>Scraped from official sources the moment they drop.</p>
+          </div>
+          <div class="feature-item">
+            <span class="feature-item-icon">🧠</span>
+            <h4>Taste Engine</h4>
+            <p>Gets smarter the more you watch and rate.</p>
+          </div>
+          <div class="feature-item">
+            <span class="feature-item-icon">📊</span>
+            <h4>Watch Stats</h4>
+            <p>See your habits, favourite genres and total hours watched.</p>
+          </div>
+          <div class="feature-item">
+            <span class="feature-item-icon">🔍</span>
+            <h4>Deep Search</h4>
+            <p>Find anime by genre, mood, rating or release year.</p>
+          </div>
+          <div class="feature-item">
+            <span class="feature-item-icon">📱</span>
+            <h4>Mobile First</h4>
+            <p>Designed for how you actually browse — on your phone.</p>
+          </div>
+          <div class="feature-item">
+            <span class="feature-item-icon">🔒</span>
+            <h4>Private by Default</h4>
+            <p>Your watchlist is yours. No public profiles unless you want.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <script src="script.js"></script>
 </body>
