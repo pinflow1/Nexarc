@@ -22,7 +22,8 @@ async function submitWaitlist() {
   input.disabled = true;
 
   try {
-    const response = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+    // Step 1: Insert into Supabase
+    const insertRes = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -33,8 +34,7 @@ async function submitWaitlist() {
       body: JSON.stringify({ email })
     });
 
-    if (response.status === 409) {
-      // Duplicate email
+    if (insertRes.status === 409) {
       input.disabled = false;
       btn.textContent = 'Join Waitlist';
       btn.disabled = false;
@@ -48,19 +48,28 @@ async function submitWaitlist() {
       return;
     }
 
-    if (!response.ok) throw new Error('Request failed');
+    if (!insertRes.ok) throw new Error('Insert failed');
 
-    // Success
+    // Step 2: Call Edge Function directly to send confirmation email
+    await fetch(`${SUPABASE_URL}/functions/v1/send-confirmation`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+      },
+      body: JSON.stringify({ record: { email } })
+    });
+
+    // Show success regardless of email result
     document.getElementById('formState').classList.add('hidden');
     document.getElementById('successState').classList.add('show');
 
   } catch (err) {
     input.disabled = false;
-    btn.textContent = 'Join Waitlist';
+    btn.textContent = 'Try again';
     btn.disabled = false;
     btn.style.background = '#ff5a3c';
     btn.style.color = 'white';
-    btn.textContent = 'Try again';
     setTimeout(() => {
       btn.style.background = '';
       btn.style.color = '';
@@ -74,3 +83,4 @@ document.getElementById('joinBtn').addEventListener('click', submitWaitlist);
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') submitWaitlist();
 });
+  
