@@ -22,19 +22,27 @@ async function submitWaitlist() {
   input.disabled = true;
 
   try {
-    // Step 1: Insert into Supabase
-    const insertRes = await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
+    // Sign up via Supabase Auth — triggers confirmation email automatically
+    const response = await fetch(`${SUPABASE_URL}/auth/v1/signup`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'apikey': SUPABASE_ANON_KEY,
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-        'Prefer': 'return=minimal'
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
       },
-      body: JSON.stringify({ email })
+      body: JSON.stringify({
+        email,
+        password: crypto.randomUUID(), // random password since we only need email
+        options: {
+          emailRedirectTo: 'https://quext.vercel.app'
+        }
+      })
     });
 
-    if (insertRes.status === 409) {
+    const data = await response.json();
+
+    // Already signed up
+    if (data?.code === 'user_already_exists' || response.status === 422) {
       input.disabled = false;
       btn.textContent = 'Join Waitlist';
       btn.disabled = false;
@@ -48,19 +56,21 @@ async function submitWaitlist() {
       return;
     }
 
-    if (!insertRes.ok) throw new Error('Insert failed');
+    if (!response.ok) throw new Error('Signup failed');
 
-    // Step 2: Call Edge Function directly to send confirmation email
-    await fetch(`${SUPABASE_URL}/functions/v1/send-confirmation`, {
+    // Also insert into waitlist table for easy tracking
+    await fetch(`${SUPABASE_URL}/rest/v1/waitlist`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`
+        'apikey': SUPABASE_ANON_KEY,
+        'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+        'Prefer': 'return=minimal'
       },
-      body: JSON.stringify({ record: { email } })
+      body: JSON.stringify({ email })
     });
 
-    // Show success regardless of email result
+    // Show success
     document.getElementById('formState').classList.add('hidden');
     document.getElementById('successState').classList.add('show');
 
@@ -83,4 +93,3 @@ document.getElementById('joinBtn').addEventListener('click', submitWaitlist);
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') submitWaitlist();
 });
-  
